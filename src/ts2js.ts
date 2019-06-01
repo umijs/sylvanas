@@ -1,10 +1,10 @@
-import { transformFileSync } from '@babel/core';
+import { transformSync } from '@babel/core';
 import sylvanas from './index';
 
-function ts2js(fileList: string[]): sylvanas.FileEntity[] {
+function ts2js(fileList: sylvanas.FileEntity[]): sylvanas.FileEntity[] {
   const jsFiles: sylvanas.FileEntity[] = fileList.map(
-    (filePath): sylvanas.FileEntity => {
-      const { code } = transformFileSync(filePath, {
+    (entity): sylvanas.FileEntity => {
+      const { code } = transformSync(entity.data, {
         plugins: [
           [
             '@babel/plugin-transform-typescript',
@@ -16,7 +16,7 @@ function ts2js(fileList: string[]): sylvanas.FileEntity[] {
       });
 
       return {
-        sourceFileName: filePath,
+        ...entity,
         data: code,
       };
     },
