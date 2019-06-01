@@ -11,7 +11,7 @@ declare namespace sylvanas {
 
   interface FileEntity {
     sourceFileName: string;
-    targetFileName: string;
+    targetFileName?: string;
     data: string;
   }
 }
