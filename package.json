@@ -2,10 +2,43 @@
   "name": "sylvanas",
   "version": "0.0.0",
   "description": "Covert TS to JS",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "repository": {
+    "url": "https://github.com/umijs/sylvanas.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "npm run build && jest"
   },
   "author": "zombiej",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-typescript": "^7.4.5",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-compat": "^3.1.1",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "fs-extra": "^8.0.1",
+    "prettier": "^1.17.1"
+  },
+  "devDependencies": {
+    "@types/eslint": "^4.16.6",
+    "@types/node": "^12.0.3",
+    "glob": "^7.1.4",
+    "jest": "^24.8.0",
+    "typescript": "^3.5.1"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ]
+  }
 }
