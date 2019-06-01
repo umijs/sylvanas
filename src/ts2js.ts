@@ -7,7 +7,7 @@ function ts2js(fileList: sylvanas.FileEntity[]): sylvanas.FileEntity[] {
       const { code } = transformSync(entity.data, {
         plugins: [
           [
-            '@babel/plugin-transform-typescript',
+            require.resolve('@babel/plugin-transform-typescript'),
             {
               isTSX: true,
             },
