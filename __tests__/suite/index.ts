@@ -1,3 +1,13 @@
-export const a: number = 1;
+import Component from './Component';
+import Component2 from './sub/Component';
 
-export default {};
+export function sum(...args: number[]) {
+  let total: number = 0;
+  args.forEach(num => {
+    total += num;
+  });
+
+  return total;
+}
+
+export default { Component, Component2 };
