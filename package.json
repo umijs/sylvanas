@@ -1,6 +1,6 @@
 {
   "name": "sylvanas",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Covert TS to JS",
   "main": "lib/index.js",
   "repository": {
@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "test": "npm run build && jest",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "rm -rf lib && npm run build"
   },
   "author": "zombiej",
   "license": "MIT",
