@@ -9,10 +9,6 @@ module.exports = {
     jest: true,
     jasmine: true,
   },
-  globals: {
-    page: true,
-    ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: true,
-  },
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js'] }],
     'react/jsx-wrap-multilines': 0,
