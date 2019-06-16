@@ -17,6 +17,9 @@ function ts2js(
             },
           ],
           [
+            require.resolve('@babel/plugin-syntax-dynamic-import'),
+          ],
+          [
             require.resolve('@babel/plugin-transform-typescript'),
             {
               isTSX: true,
