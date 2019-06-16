@@ -6,7 +6,12 @@ import * as fs from 'fs-extra';
 
 declare namespace sylvanas {
   type Action = 'none' | 'write' | 'overwrite';
-  interface Option {
+
+  interface BabelOption {
+    decoratorsBeforeExport?: boolean;
+  }
+
+  interface Option extends BabelOption {
     outDir?: string;
     cwd?: string;
     action?: Action;
@@ -17,6 +22,19 @@ declare namespace sylvanas {
     targetFilePath?: string;
     data: string;
   }
+}
+
+function parse(fileList: sylvanas.FileEntity[], option: sylvanas.BabelOption = {}) {
+  // Get js from ts
+  const jsFiles = ts2js(fileList, option);
+
+  // eslint
+  const lintFiles = eslintJs(jsFiles);
+
+  // prettier
+  const prettierFiles = prettierJS(lintFiles);
+
+  return prettierFiles;
 }
 
 function sylvanas(files: string[], option: sylvanas.Option) {
@@ -40,17 +58,10 @@ function sylvanas(files: string[], option: sylvanas.Option) {
     },
   );
 
-  // Get js from ts
-  const jsFiles = ts2js(fileList);
-
-  // eslint
-  const lintFiles = eslintJs(jsFiles);
-
-  // prettier
-  const prettierFiles = prettierJS(lintFiles);
+  const parsedFileList = parse(fileList, option);
 
   if (action === 'write' || action === 'overwrite') {
-    prettierFiles.forEach(({ sourceFilePath, targetFilePath, data }) => {
+    parsedFileList.forEach(({ sourceFilePath, targetFilePath, data }) => {
       fs.ensureFileSync(targetFilePath);
       fs.writeFileSync(targetFilePath, data);
 
@@ -60,7 +71,7 @@ function sylvanas(files: string[], option: sylvanas.Option) {
     });
   }
 
-  return prettierFiles;
+  return parsedFileList;
 }
 
 export = sylvanas;

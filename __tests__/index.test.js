@@ -1,7 +1,8 @@
-const path = require('path');
-const glob = require('glob');
 const fs = require('fs-extra');
+const glob = require('glob');
+const path = require('path');
 const sylvanas = require('../lib/index');
+
 const cwd = path.resolve(__dirname, 'suite');
 
 describe('sylvanas', () => {
