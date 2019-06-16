@@ -1,7 +1,8 @@
 const ts2js = require('../lib/ts2js').default;
 
 function parse(text, option) {
-  return ts2js([{ data: text.trim() }], option)[0].data;
+  const parsed = ts2js([{ data: text.trim() }], option)[0].data;
+  return parsed;
 }
 
 describe('decorator', () => {
