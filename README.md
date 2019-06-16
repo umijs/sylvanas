@@ -38,3 +38,7 @@ Default `none`. Set what will Sylvanas do with files:
 #### outDir - string
 
 Set the write file folder. Defaults to `cwd`.
+
+#### decoratorsBeforeExport - boolean
+
+Same as [babel decoratorsbeforeexport](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#decoratorsbeforeexport).
