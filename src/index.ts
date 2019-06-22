@@ -74,4 +74,13 @@ function sylvanas(files: string[], option: sylvanas.Option) {
   return parsedFileList;
 }
 
+sylvanas.parseText = function parseText(text: string, option: sylvanas.BabelOption = {}): string {
+  const result = parse([{
+    sourceFilePath: '',
+    data: text,
+  }], option);
+
+  return result[0].data;
+};
+
 export = sylvanas;
