@@ -1,13 +1,10 @@
 import { transformSync } from '@babel/core';
-import sylvanas from './index';
+import { FileEntity, BabelOption } from './typing';
 import decoratorPlugin from './babel-decorator-plugin';
 
-function ts2js(
-  fileList: sylvanas.FileEntity[],
-  option: sylvanas.BabelOption = {},
-): sylvanas.FileEntity[] {
-  const jsFiles: sylvanas.FileEntity[] = fileList.map(
-    (entity): sylvanas.FileEntity => {
+function ts2js(fileList: FileEntity[], option: BabelOption = {}): FileEntity[] {
+  const jsFiles: FileEntity[] = fileList.map(
+    (entity): FileEntity => {
       const { code } = transformSync(entity.data, {
         plugins: [
           [
@@ -16,9 +13,7 @@ function ts2js(
               decoratorsBeforeExport: !!option.decoratorsBeforeExport,
             },
           ],
-          [
-            require.resolve('@babel/plugin-syntax-dynamic-import'),
-          ],
+          [require.resolve('@babel/plugin-syntax-dynamic-import')],
           [
             require.resolve('@babel/plugin-transform-typescript'),
             {
