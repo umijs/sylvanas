@@ -1,30 +1,12 @@
 import * as path from 'path';
+import * as fs from 'fs-extra';
+
 import ts2js from './ts2js';
 import eslintJs from './eslintJs';
 import prettierJS from './prettierJs';
-import * as fs from 'fs-extra';
+import { FileEntity, BabelOption, Option, Action } from './typing';
 
-declare namespace sylvanas {
-  type Action = 'none' | 'write' | 'overwrite';
-
-  interface BabelOption {
-    decoratorsBeforeExport?: boolean;
-  }
-
-  interface Option extends BabelOption {
-    outDir?: string;
-    cwd?: string;
-    action?: Action;
-  }
-
-  interface FileEntity {
-    sourceFilePath: string;
-    targetFilePath?: string;
-    data: string;
-  }
-}
-
-function parse(fileList: sylvanas.FileEntity[], option: sylvanas.BabelOption = {}) {
+function parse(fileList: FileEntity[], option: BabelOption = {}) {
   // Get js from ts
   const jsFiles = ts2js(fileList, option);
 
@@ -37,13 +19,13 @@ function parse(fileList: sylvanas.FileEntity[], option: sylvanas.BabelOption = {
   return prettierFiles;
 }
 
-function sylvanas(files: string[], option: sylvanas.Option) {
+function sylvanas(files: string[], option: Option) {
   const cwd = option.cwd || process.cwd();
   const outDir = option.outDir || cwd;
-  const action: sylvanas.Action = option.action || 'none';
+  const action: Action = option.action || 'none';
 
-  const fileList: sylvanas.FileEntity[] = files.map(
-    (file): sylvanas.FileEntity => {
+  const fileList: FileEntity[] = files.map(
+    (file): FileEntity => {
       const filePath = path.resolve(cwd, file);
       const targetFilePath = path.resolve(
         outDir,
@@ -74,11 +56,16 @@ function sylvanas(files: string[], option: sylvanas.Option) {
   return parsedFileList;
 }
 
-sylvanas.parseText = function parseText(text: string, option: sylvanas.BabelOption = {}): string {
-  const result = parse([{
-    sourceFilePath: '',
-    data: text,
-  }], option);
+sylvanas.parseText = function parseText(text: string, option: BabelOption = {}): string {
+  const result = parse(
+    [
+      {
+        sourceFilePath: '',
+        data: text,
+      },
+    ],
+    option,
+  );
 
   return result[0].data;
 };

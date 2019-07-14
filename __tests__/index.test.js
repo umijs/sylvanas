@@ -58,7 +58,7 @@ describe('sylvanas', () => {
         glob.sync('**/*.@(ts|tsx|js|jsx)', {
           cwd: tmpSourcePath,
         }).length,
-      ).toBe(6);
+      ).toBe(8);
     });
 
     it('overwrite folder', () => {
@@ -71,7 +71,7 @@ describe('sylvanas', () => {
         glob.sync('**/*.@(ts|tsx|js|jsx)', {
           cwd: tmpSourcePath,
         }).length,
-      ).toBe(3);
+      ).toBe(5);
     });
   });
 });

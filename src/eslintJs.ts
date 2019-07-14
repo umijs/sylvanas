@@ -1,19 +1,25 @@
 import * as path from 'path';
-import { CLIEngine, Linter } from 'eslint';
-import sylvanas from './index';
+import { CLIEngine } from 'eslint';
+import { FileEntity } from './typing';
 
-function eslintJS(jsFiles: sylvanas.FileEntity[]) {
-  const engine = new CLIEngine({
-    baseConfig: require(path.resolve(__dirname, '../.eslintrc.js')),
-  });
-  const rules = engine.getRules();
-  const linter = new Linter();
+const importCache = require('import-fresh');
 
-  const lintFiles: sylvanas.FileEntity[] = jsFiles.map((entity: sylvanas.FileEntity) => {
-    const { output } = linter.verifyAndFix(entity.data, {
-      rules: rules as any,
-    });
+const engine = new CLIEngine({
+  fix: true,
+  baseConfig: importCache(path.resolve(__dirname, '../.eslintrc.js')),
+});
 
+export const lintAndFix: (content: string) => string = content => {
+  const report = engine.executeOnText(content);
+  if (report.results[0].output) {
+    return report.results[0].output;
+  }
+  return content;
+};
+
+function eslintJS(jsFiles: FileEntity[]) {
+  const lintFiles: FileEntity[] = jsFiles.map((entity: FileEntity) => {
+    const output: string = lintAndFix(entity.data);
     return {
       ...entity,
       data: output,

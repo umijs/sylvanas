@@ -1,3 +1,5 @@
 node_modules
 lib/
 __tests__/tmp*
+yarn.lock
+yarn-error.log
