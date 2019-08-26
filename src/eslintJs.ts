@@ -5,6 +5,7 @@ import { FileEntity } from './typing';
 const importCache = require('import-fresh');
 
 const engine = new CLIEngine({
+  useEslintrc: false,
   fix: true,
   baseConfig: importCache(path.resolve(__dirname, '../eslintrc.js')),
 });
