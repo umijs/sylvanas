@@ -9,7 +9,12 @@ function prettierJS(jsFiles: FileEntity[]): FileEntity[] {
   prettierOption.parser = 'babel';
 
   return jsFiles.map(entity => {
-    const data = format(entity.data, prettierOption);
+    let data = entity.data;
+    try {
+      data = format(entity.data, prettierOption);
+    } catch (e) {
+      console.error('error', e);
+    }
     return {
       ...entity,
       data,
