@@ -20,7 +20,12 @@ export const lintAndFix: (content: string) => string = content => {
 
 function eslintJS(jsFiles: FileEntity[]) {
   const lintFiles: FileEntity[] = jsFiles.map((entity: FileEntity) => {
-    const output: string = lintAndFix(entity.data);
+    let output: string = entity.data;
+    try {
+      output = lintAndFix(entity.data);
+    } catch (e) {
+      console.error(e);
+    }
     return {
       ...entity,
       data: output,
