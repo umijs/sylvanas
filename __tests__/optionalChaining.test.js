@@ -7,14 +7,10 @@ function parse(text, option) {
 
 describe('optional chaining', () => {
   it('class', () => {
-    const text = parse(
-      `
-function parse(unit?: { value: number }) {
-  return unit?.value;
-}
-`,
-    );
-    // expect(text.includes('async')).toBeTruthy();
-    console.log('>>>', text);
+    const source = `
+const getRowByKey = (key: string, newData?: TableFormDateType[]) => (newData || data)?.filter((item) => item.key === key)[0];
+`.trim();
+    const text = parse(source);
+    console.log('Output:', text);
   });
 });
