@@ -11,6 +11,8 @@ describe('optional chaining', () => {
 const getRowByKey = (key: string, newData?: TableFormDateType[]) => (newData || data)?.filter((item) => item.key === key)[0];
 `.trim();
     const text = parse(source);
-    console.log('Output:', text);
+    expect(text).toEqual(
+      `const getRowByKey = (key, newData) => (newData || data)?.filter(item => item.key === key)[0];`,
+    );
   });
 });
