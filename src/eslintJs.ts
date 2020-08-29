@@ -7,11 +7,12 @@ const importCache = require('import-fresh');
 const engine = new CLIEngine({
   useEslintrc: false,
   fix: true,
-  baseConfig: importCache(path.resolve(__dirname, '../eslintrc.js')),
+  baseConfig: importCache(path.resolve(__dirname, '../.eslintrc.js')),
 });
 
-export const lintAndFix: (content: string) => string = content => {
-  const report = engine.executeOnText(content);
+export const lintAndFix: (content: string, filename?: string) => string = (content, filename) => {
+  const report = engine.executeOnText(content, filename);
+
   if (report.results[0].output) {
     return report.results[0].output;
   }

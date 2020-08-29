@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc",
     "test": "npm run build && jest",
+    "prettier": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "prepublishOnly": "rm -rf lib && npm run build"
   },
   "author": "zombiej",
@@ -23,10 +24,10 @@
     "eslint": "^7.7.0",
     "fs-extra": "^8.0.1",
     "import-fresh": "^3.1.0",
-    "prettier": "^1.17.1"
+    "prettier": "^2.1.1"
   },
   "devDependencies": {
-    "@types/eslint": "^4.16.8",
+    "@types/eslint": "^7.2.2",
     "@types/fs-extra": "^7.0.0",
     "@types/jest": "^26.0.10",
     "@types/node": "^12.0.3",

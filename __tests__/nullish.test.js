@@ -16,7 +16,7 @@ function my(config: Config) {
 }
 `.trim();
     const text = parse(source);
-    const cells = text.split(/[\r\n]+/).map(line => line.trim());
+    const cells = text.split(/[\r\n]+/).map((line) => line.trim());
     expect(cells).toEqual(['function my(config) {', 'return config.light ?? 2333;', '}']);
   });
 });
