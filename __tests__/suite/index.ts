@@ -3,7 +3,7 @@ import Component2 from './sub/Component';
 
 export function sum(...args: number[]) {
   let total: number = 0;
-  args.forEach(num => {
+  args.forEach((num) => {
     total += num;
   });
 

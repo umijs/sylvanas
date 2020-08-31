@@ -8,8 +8,8 @@ function prettierJS(jsFiles: FileEntity[]): FileEntity[] {
   const prettierOption: Options = JSON.parse(str);
   prettierOption.parser = 'babel';
 
-  return jsFiles.map(entity => {
-    let data = entity.data;
+  return jsFiles.map((entity) => {
+    let { data } = entity;
     try {
       data = format(entity.data, prettierOption);
     } catch (e) {

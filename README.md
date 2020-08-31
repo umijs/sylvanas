@@ -32,8 +32,8 @@ The current working directory in which to search. Defaults to `process.cwd()`.
 
 Default `none`. Set what will Sylvanas do with files:
 
-* `write`: Write new file with name of suffix `.js` or `.jsx`.
-* `overwrite`: Like `write` but will remove origin files.
+- `write`: Write new file with name of suffix `.js` or `.jsx`.
+- `overwrite`: Like `write` but will remove origin files.
 
 #### outDir - string
 
