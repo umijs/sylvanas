@@ -8,6 +8,7 @@ const engine = new CLIEngine({
   useEslintrc: false,
   fix: true,
   baseConfig: importCache(path.resolve(__dirname, '../.eslintrc.js')),
+  resolvePluginsRelativeTo: path.resolve(__dirname, '..'),
 });
 
 export const lintAndFix: (content: string, filename?: string) => string = (content, filename) => {
