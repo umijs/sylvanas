@@ -2,6 +2,7 @@ export type Action = 'none' | 'write' | 'overwrite';
 
 export interface BabelOption {
   decoratorsBeforeExport?: boolean;
+  filename?: string;
 }
 
 export interface Option extends BabelOption {

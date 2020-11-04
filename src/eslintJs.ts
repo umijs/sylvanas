@@ -14,7 +14,7 @@ const engine = new CLIEngine({
 export const lintAndFix: (content: string, filename?: string) => string = (content, filename) => {
   const report = engine.executeOnText(content, filename);
 
-  if (report.results[0].output) {
+  if (report.results[0]?.output) {
     return report.results[0].output;
   }
   return content;
@@ -24,7 +24,7 @@ function eslintJS(jsFiles: FileEntity[]) {
   const lintFiles: FileEntity[] = jsFiles.map((entity: FileEntity) => {
     let output: string = entity.data;
     try {
-      output = lintAndFix(entity.data);
+      output = lintAndFix(entity.data, entity.sourceFilePath);
     } catch (e) {
       console.error(e);
     }

@@ -60,7 +60,7 @@ sylvanas.parseText = function parseText(text: string, option: BabelOption = {}):
   const result = parse(
     [
       {
-        sourceFilePath: '',
+        sourceFilePath: option.filename,
         data: text,
       },
     ],
