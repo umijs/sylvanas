@@ -1,6 +1,6 @@
 {
   "name": "sylvanas",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Covert TS to JS",
   "repository": {
     "url": "https://github.com/umijs/sylvanas.git"
