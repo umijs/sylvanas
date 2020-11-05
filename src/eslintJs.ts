@@ -14,7 +14,7 @@ const engine = new CLIEngine({
 export const lintAndFix: (content: string, filename?: string) => string = (content, filename) => {
   const report = engine.executeOnText(content, filename);
 
-  if (report.results[0]?.output) {
+  if (report.results[0] && report.results[0].output) {
     return report.results[0].output;
   }
   return content;
